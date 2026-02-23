@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+	<title>304 Frontend</title>
+
+
+	<div id="google font">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link href="/stylesSearch.css" rel="stylesheet"/>
+	</div>
+</head>
+
+
+<br>
+
+<header>
+	<hr style="height:10pt; visibility:hidden;" />
+	<div class="menu">
+		<a href="/">Home</a>
+		<a href="/modify.html">Modify</a>
+        <a href="/products.html">Products</a>
+        <a href="/insights.html">Insights</a>
+	</div>
+	<hr style="height:10pt; visibility:hidden;" />
+
+</header>
+
+<h1>Products</h1>
+
+<section class="container" style="	padding-left: 50pt;
+    padding-right: 50pt;">
+    <div id="pt1" > 
+        <h2> Select Product </h2>
+        <form id="product-select-form">
+            <div>
+                <select required name="product-select-attribute-first" id="product-select-attribute-first" class="dropdown">
+                    <option value="">Select an attribute </option>
+                    <option value="PID">PID</option>
+                    <option value="Name">Name</option>
+                    <option value="Description">Description</option>
+                    <option value="UnitPrice">Unit Price</option>
+                    <option value="MinimumOrder">Minimum Order</option>
+                    <option value="SID">Supplier ID</option>
+                </select> = <input type="text"  pattern='^[a-zA-Z0-9\s]{0,255}' maxlength = '255' id="product-select-input-first"> <button id="add-condition">+</button>
+            </div>
+            <br>
+            <button type="submit">Search</button> 
+        </form>
+            <div id="selectionResultMsg"></div>
+    
+        <br>
+         <table id="selectTable" border="1">
+            <thead>
+                <tr>
+                    <!--Table head, need to be adjusted accordingly to align with your own.-->
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Unit Price</th>
+                    <th>Minimum Order</th>
+                    <th>Supplier ID</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <hr style="height:10pt; visibility:hidden;" />
+
+        <h2> Find Products From City </h2>
+        <form id="product-join-form">
+        City: <input required id="product-city" type="text" pattern='^[a-zA-Z0-9\s]{0,255}' maxlength='255' placeholder="Enter City"></input>
+        <br>
+        <button type="submit" id="join-button">Find</button>
+        </form>
+
+            <div id="joinResultMsg"></div>
+    
+    
+            <br><br>
+            <table id="product-city-table" border="1">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Unit Price</th>
+                    <th>Minimum Order</th>
+                    <th>Supplier ID</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div id="product-select-result"></div>
+    </div>
+    <div id="pt2" style="max-width: fit-content;">
+        <h2> View Product Attributes </h2>
+        <form id="product-project-form">
+            <div id="project-checkboxes">
+                <input type="checkbox" value="PID" id="product-project-id">Product ID</input>
+                <input type="checkbox" value="Name" id="product-project-name">Name</input>
+                <input type="checkbox" value="Description" id="product-project-description">Description</input>
+                <input type="checkbox" value="UnitPrice" id="product-project-unitPrice">Unit Price</input>
+                <input type="checkbox" value="MinimumOrder" id="product-project-minOrder">Minimum Order</input>
+                <input type="checkbox" value="SID" id="product-project-sid">Supplier ID</input>
+            </div>
+            <br>
+            <button type="submit">View</button> 
+        <div id="projectionResultMsg"></div>
+        
+        </form>
+            <br>
+        <table id="projectTable" border="1">
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        
+    </div>
+</section>
+
+<hr style="height:10pt; visibility:hidden;" />
+
+<section class="container" style="display: none;">
+    <div id="col-1">
+        <h2> Insert New Product </h2>
+        <form id="product-insert-form">
+            ID: <input type="text" id="product-insert-id" placeholder="Enter product ID" maxlength="10" pattern='^[a-zA-Z0-9]{0,10}' required> <br><br>
+            Name: <input type="text" id="product-insert-name" placeholder="Enter name"  pattern='^[a-zA-Z0-9\s]{0,255}' maxlength="255"> <br><br>
+            Description: <input type="text"  id="product-insert-description" placeholder="Enter description" maxlength="255"> <br><br>
+            Unit Price: <input type="number" id="product-insert-price" placeholder="Enter price" step=".01"> <br><br>
+            Minimum Order Amount: <input type="number" id="product-insert-minorder" placeholder="Enter amount" maxlength="20"> <br><br>
+            SID: <input type="text"  id="product-insert-sid" placeholder="Enter supplier ID" pattern='^[a-zA-Z0-9]{0,10}'maxlength="10">
+            <br><br>
+            <button type="submit">Insert product</button> 
+        </form>
+        <div id="insertProductResultMsg"></div>
+        </div>
+    <div id="col-2">
+        <h2> Update Product </h2>
+        <form id="product-update-form">
+            ID: <select required name="product-update-id" id="product-update-id" class="dropdown">
+                <option value="">Select a product ID</option></select>
+                <br><br>
+            Name: <input  type="text" id="product-update-name" placeholder="Enter name"  pattern='^[a-zA-Z0-9\s]{0,255}' maxlength="255"> <br><br>
+            Description: <input  type="text" id="product-update-description" placeholder="Enter description"  maxlength="255"> <br><br>
+            Unit Price: <input type="number" id="product-update-price" placeholder="Enter price" step=".01"> <br><br>
+            Minimum Order Amount: <input type="number" id="product-update-minorder" placeholder="Enter amount" maxlength="20"> <br><br>
+            SID: <input type="text"  id="product-update-sid" placeholder="Enter supplier ID" pattern='^[a-zA-Z0-9]{0,10}' maxlength="10">
+            <br><br>
+            <button type="submit">Update product</button> 
+        </form>
+        <div id="updateProductResultMsg"></div>
+    </div>
+    <div id="col-3">
+        <h2> Delete Supplier </h2>
+        <form id="supplier-delete-form">
+            SID: <select required name="supplier-delete-id" id="supplier-delete-id" class="dropdown">
+                <option value="">Select a supplier ID</option></select>
+            <br><br>
+            <button type="submit">Delete supplier</button> 
+        </form>
+        <div id="deleteSupplierResultMsg"></div>
+    </div>
+    </section>
+
+
+<script type="text/javascript" src="/scripts.js"></script>
+</body>
+
+</html>

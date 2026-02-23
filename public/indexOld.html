@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- This meta tag ensures that the website renders correctly across different device sizes, enhancing mobile responsiveness. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to the external CSS stylesheet. Uncomment if you wish to customize or add styling. -->
+    <!-- <link rel="stylesheet" href="styles.css">   -->
+
+    <title>Warehouse Manager</title>
+</head>
+<body>
+    <!-- ===================================================================================== -->
+    <!-- Display the current status of the database connection. 
+         !!HERE TO HELP U DEBUGGING, NOT REQUIRED IN YOUR OWN PROJECT!!
+         -->
+    <h1>Database Connection Status: 
+        <!-- An in-line placeholder to display connection status. -->
+        <span id="dbStatus"> </span>
+        <!-- A loading GIF, will be hided once get the status. -->
+        <img id="loadingGif" class="loading-gif" src="loading_100px.gif" alt="Loading...">
+    </h1>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2> Insert New Product </h2>
+    <form id="product-insert-form">
+        ID: <input type="text" id="product-insert-id" placeholder="Enter product ID" maxlength="10" pattern='^[a-zA-Z0-9]{0,10}' required> <br><br>
+        Name: <input type="text" id="product-insert-name" placeholder="Enter name" pattern='^[a-zA-Z0-9]{0,255}'maxlength="255"> <br><br>
+        Description: <input type="text"  id="product-insert-description" placeholder="Enter description" pattern='^[a-zA-Z0-9]{0,255}' maxlength="255"> <br><br>
+        Unit Price: <input type="number" id="product-insert-price" placeholder="Enter price" step=".01"> <br><br>
+        Minimum Order Amount: <input type="number" id="product-insert-minorder" placeholder="Enter amount" maxlength="20"> <br><br>
+        SID: <input type="text"  id="product-insert-sid" placeholder="Enter supplier ID" pattern='^[a-zA-Z0-9]{0,10}'maxlength="10">
+        <br><br>
+        <button type="submit">Insert product</button> 
+    </form>
+    <div id="insertProductResultMsg"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2> Update Product </h2>
+    <form id="product-update-form">
+        ID: <select required name="product-update-id" id="product-update-id">
+            <option value="">Select a product ID</option></select>
+            <br><br>
+        Name: <input  type="text" id="product-update-name" placeholder="Enter name" pattern='^[a-zA-Z0-9]{0,255}' maxlength="255"> <br><br>
+        Description: <input  type="text" id="product-update-description" placeholder="Enter description"  pattern='^[a-zA-Z0-9]{0,255}' maxlength="255"> <br><br>
+        Unit Price: <input type="number" id="product-update-price" placeholder="Enter price" step=".01"> <br><br>
+        Minimum Order Amount: <input type="number" id="product-update-minorder" placeholder="Enter amount" maxlength="20"> <br><br>
+        SID: <input type="text"  id="product-update-sid" placeholder="Enter supplier ID" pattern='^[a-zA-Z0-9]{0,10}' maxlength="10">
+        <br><br>
+        <button type="submit">Update product</button> 
+    </form>
+    <div id="updateProductResultMsg"></div>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+        <h2> Delete Supplier </h2>
+    <form id="supplier-delete-form">
+        SID: <select required name="supplier-delete-id" id="supplier-delete-id">
+            <option value="">Select a supplier ID</option></select>
+        <br><br>
+        <button type="submit">Delete supplier</button> 
+    </form>
+    <div id="deleteSupplierResultMsg"></div>
+    <br><hr><br> <!-- ========================================================================= -->
+
+
+    <h2> Select Product </h2>
+    <form id="product-select-form">
+        <div>
+            <select required name="product-select-attribute-first" id="product-select-attribute-first">
+                <option value="">Select an attribute</option>
+                <option value="PID">PID</option>
+                <option value="Name">Name</option>
+                <option value="Description">Description</option>
+                <option value="UnitPrice">Unit Price</option>
+                <option value="MinimumOrder">Minimum Order</option>
+                <option value="SID">Supplier ID</option>
+            </select> = <input type="text"  pattern='^[a-zA-Z0-9]{0,255}' maxlength = '255' id="product-select-input-first"> <button id="add-condition">+</button>
+        </div>
+        <br>
+        <button type="submit">Search</button> 
+    </form>
+        <div id="selectionResultMsg"></div>
+
+    <br>
+     <table id="selectTable" border="1">
+        <thead>
+            <tr>
+                <!--Table head, need to be adjusted accordingly to align with your own.-->
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Unit Price</th>
+                <th>Minimum Order</th>
+                <th>Supplier ID</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div id="product-select-result"></div>
+    <br><hr><br> <!-- ========================================================================= -->
+
+
+    <h2> View Product Attributes </h2>
+    <form id="product-project-form">
+        <div id="project-checkboxes">
+            <input type="checkbox" value="PID" id="product-project-id">Product ID</input>
+            <input type="checkbox" value="Name" id="product-project-name">Name</input>
+            <input type="checkbox" value="Description" id="product-project-description">Description</input>
+            <input type="checkbox" value="UnitPrice" id="product-project-unitPrice">Unit Price</input>
+            <input type="checkbox" value="MinimumOrder" id="product-project-minOrder">Minimum Order</input>
+            <input type="checkbox" value="SID" id="product-project-sid">Supplier ID</input>
+        </div>
+        <br>
+        <button type="submit">View</button> 
+    <div id="projectionResultMsg"></div>
+
+    </form>
+        <br>
+    <table id="projectTable" border="1">
+        <thead>
+            <tr>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2> Find Products From City </h2>
+    <form id="product-join-form">
+    City: <input  required id="product-city" type="text" pattern='^[a-zA-Z0-9]{0,255}'maxlength='255' placeholder="Enter City"></input>
+    <button type="submit" id="join-button">Find</button>
+    </form>
+        <div id="joinResultMsg"></div>
+
+
+        <br><br>
+        <table id="product-city-table" border="1">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Unit Price</th>
+                <th>Minimum Order</th>
+                <th>Supplier ID</th>
+                <th>City</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br><hr><br> <!-- ========================================================================= -->
+    
+    <h2> # of Products of Each Supplier </h2>
+    <form id="count-supplier-product-form">
+    <button id="count-supplier-products-button">Find</button>
+    </form>
+    <br>
+    <div id="countProductsPerSupplierResult"></div>
+        <table id="product-per-supplier-table" border="1">
+        <thead>
+            <tr>
+                <th>Supplier ID</th>
+                <th># of Products</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+
+        <br><hr><br> <!-- ========================================================================= -->
+
+    <h2> Find Supplier with Product Count </h2>
+    <form id="supplier-count-product-form">
+    Product Count: <input required id="supplier-count-product-count" type="number"placeholder="Enter count"></input>
+    <button type="submit" id="supplier-count-button">Find</button>
+    </form>
+    <div id="findSupplierByCountResultMsg"></div>
+
+    <br>
+    <table id="supplier-count-product-table" border="1">
+        <thead>
+            <tr>
+                <th>Supplier ID</th>
+                <th># of Products</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2> Find Supplier with Highest Average Product Price </h2>
+    <button id="supplier-highest-average-product-price-button">Find</button>
+    <div id="highestAvgProductPriceResult"></div>
+    <br>
+    <table id="supplier-highest-average-product-price-table" border="1">
+        <thead>
+            <tr>
+                <th>Supplier ID</th>
+                <th>Average Product Price</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <br><hr><br> <!-- ========================================================================= -->
+
+    <h2> Find Warehouses that Monitor All Inventories </h2>
+    <button id="warehouses-all-inventories-button">Find</button>
+    <div id="warehousesAllInventoriesResult"></div>
+    <br>
+    <table id="warehouses-all-inventories-table" border="1">
+        <thead>
+            <tr>
+                <th>Warehouse ID</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+        <br><hr><br> <!-- ========================================================================= -->
+
+
+
+
+    <!-- <h2> Find Products From Supplier </h2>
+    <form id="count-suppliier-product-form">
+    Supplier: <input required id="count-supplier-product-sid" type="text"placeholder="Enter supplier ID"></input>
+    <button type="submit" id="count-supplier-button">Find</button>
+    </form>
+    <div id="countSupplierProductResult"></div> -->
+
+
+
+    
+
+
+    <!-- ===================================================================================== -->
+    <!-- External JavaScript file that contains the functionality/logic for the operations above. -->
+    <script src="scripts.js"></script>
+</body>
+</html>

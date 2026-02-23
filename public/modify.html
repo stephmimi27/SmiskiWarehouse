@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <!-- This meta tag ensures that the website renders correctly across different device sizes, enhancing mobile responsiveness. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link href="/stylesNew.css" rel="stylesheet"/>
+
+	<title>304 Frontend</title>
+
+
+	<div id="google font">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link href="/stylesNew.css" rel="stylesheet"/>
+	</div>
+
+</head>
+
+<br>
+
+<header>
+	<hr style="height:10pt; visibility:hidden;" />
+	<div class="menu">
+		<a href="/">Home</a>
+		<a href="/modify.html">Modify</a>
+        <a href="/products.html">Products</a>
+        <a href="/insights.html">Insights</a>
+	</div>
+	<hr style="height:10pt; visibility:hidden;" />
+
+</header>
+
+<body>
+<h1>Modify</h1>
+
+
+	<section class="container">
+		<div id="pt1">
+			<h2> Insert New Product </h2>
+			<form id="product-insert-form">
+				ID: <input type="text" id="product-insert-id" placeholder="Enter product ID" maxlength="10" pattern='^[a-zA-Z0-9]{0,10}' required> <br><br>
+				Name: <input type="text" id="product-insert-name" placeholder="Enter name" pattern='^[a-zA-Z0-9\s]{0,255}' maxlength="255"> <br><br>
+				Description: <input type="text"  id="product-insert-description" placeholder="Enter description" pattern='^[a-zA-Z0-9\s]{0,255}' maxlength="255"> <br><br>
+				Unit Price: <input type="number" id="product-insert-price" placeholder="Enter price" step=".01"> <br><br>
+				Minimum Order Amount: <input type="number" id="product-insert-minorder" placeholder="Enter amount" maxlength="20"> <br><br>
+				SID: <input type="text"  id="product-insert-sid" placeholder="Enter supplier ID" pattern='^[a-zA-Z0-9]{0,10}'maxlength="10">
+				<br><br>
+				<button type="submit">Insert product</button> 
+			</form>
+			<div id="insertProductResultMsg"></div>
+			</div>
+		<div id="pt2">
+			<h2> Update Product </h2>
+			<form id="product-update-form">
+				ID: <select required name="product-update-id" id="product-update-id" class="dropdown">
+					<option value="">Select a product ID</option></select>
+					<br><br>
+				Name: <input  type="text" id="product-update-name" placeholder="Enter name" pattern='^[a-zA-Z0-9\s]{0,255}' maxlength="255"> <br><br>
+				Description: <input  type="text" id="product-update-description" placeholder="Enter description" pattern='^[a-zA-Z0-9\s]{0,255}' maxlength="255"> <br><br>
+				Unit Price: <input type="number" id="product-update-price" placeholder="Enter price" step=".01"> <br><br>
+				Minimum Order Amount: <input type="number" id="product-update-minorder" placeholder="Enter amount" maxlength="20"> <br><br>
+				SID: <input type="text"  id="product-update-sid" placeholder="Enter supplier ID" pattern='^[a-zA-Z0-9]{0,10}' maxlength="10">
+				<br><br>
+				<button type="submit">Update product</button> 
+			</form>
+			<div id="updateProductResultMsg"></div>
+		</div>
+		<div id="pt3">
+			<h2> Delete Supplier </h2>
+			<form id="supplier-delete-form">
+				SID: <select required name="supplier-delete-id" id="supplier-delete-id" class="dropdown">
+					<option value="">Select a supplier ID</option></select>
+				<br><br>
+				<button type="submit">Delete supplier</button> 
+			</form>
+			<div id="deleteSupplierResultMsg"></div>
+		</div>
+		</section>
+
+
+		<script src="scripts.js"></script>
+</body>
+</html>
