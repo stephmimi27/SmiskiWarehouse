@@ -1,5 +1,5 @@
-PatentChecker | *GCP, BERT, Python, PyTorch, sklearn, Node.js, OpenAI API*
+SmiskiWarehouse | *SQL, Java, React, Oracle, Batchfile, Shell, HTML, CSS*
 <br>
-• Deployed models built with OpenAI APIs to vectorize patent and keyword pairs embedded in a 9 million entry database
+• Designed and implemented a relational database system with Oracle to manage warehouse processes
 <br>
-• Implemented a GCP infrastructure to run a custom tuned BERT model on abstracts to analyze patent cosine similarities
+• Integrated SQL queries in a web application database providing real-time insights for supply chain management
